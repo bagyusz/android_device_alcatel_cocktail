@@ -27,6 +27,7 @@ PRODUCT_COPY_FILES += \
 # Media codecs & audio policy
 PRODUCT_COPY_FILES += \
     device/alcatel/cocktail/media_codecs.xml:system/etc/media_codecs.xml \
+    device/alcatel/cocktail/media_profiles.xml:system/etc/media_profiles.xml \
     device/alcatel/cocktail/audio_policy.conf:system/etc/audio_policy.conf
 
 # Use HDPI phone dalvik config
