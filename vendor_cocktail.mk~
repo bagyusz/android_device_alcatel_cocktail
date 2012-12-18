@@ -11,7 +11,7 @@ PRODUCT_COPY_FILES += \
 
 # bcm4330 bt fw
 PRODUCT_COPY_FILES += \
-    device/alcatel/cocktail/proprietary/BCM4330B1_002.001.003.0087.0000_TCL_Cocktail_TESTONLY.hcd:/system/etc/firmware/bcm4330.hcd
+    device/alcatel/cocktail/proprietary/bcm4330.hcd:/system/etc/firmware/bcm4330.hcd
 
 # video codecs
 PRODUCT_COPY_FILES += \
@@ -39,6 +39,11 @@ PRODUCT_COPY_FILES += \
     device/alcatel/cocktail/proprietary/libq3dtools_adreno200.so:/system/lib/egl/libq3dtools_adreno200.so \
     device/alcatel/cocktail/proprietary/yamato_pm4.fw:/system/etc/firmware/yamato_pm4.fw \
     device/alcatel/cocktail/proprietary/yamato_pfp.fw:/system/etc/firmware/yamato_pfp.fw \
+    device/alcatel/cocktail/proprietary/firmware/a225p5_pm4.fw:/system/etc/firmware/a225p5_pm4.fw \
+    device/alcatel/cocktail/proprietary/firmware/a225_pm4.fw:/system/etc/firmware/a225_pm4.fw \
+    device/alcatel/cocktail/proprietary/firmware/a225_pfp.fw:/system/etc/firmware/a225_pfp.fw \
+    device/alcatel/cocktail/proprietary/firmware/leia_pfp_470.fw:/system/etc/firmware/leia_pfp_470.fw \
+    device/alcatel/cocktail/proprietary/firmware/leia_pm4_470.fw:/system/etc/firmware/leia_pm4_470.fw \
     device/alcatel/cocktail/proprietary/libsc-a2xx.so:/system/lib/libsc-a2xx.so
 
 # misc
