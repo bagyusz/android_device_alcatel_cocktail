@@ -1,7 +1,7 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 # The gps config appropriate for this device
-#$(call inherit-product, device/common/gps/gps_us_supl.mk)
+$(call inherit-product, device/common/gps/gps_us_supl.mk)
 
 # Proprietary bits and pieces
 $(call inherit-product-if-exists, device/alcatel/cocktail/vendor_cocktail.mk)
@@ -27,6 +27,7 @@ PRODUCT_COPY_FILES += \
 # Media codecs & audio policy
 PRODUCT_COPY_FILES += \
     device/alcatel/cocktail/media_codecs.xml:system/etc/media_codecs.xml \
+    device/alcatel/cocktail/media_profiles.xml:system/etc/media_profiles.xml \
     device/alcatel/cocktail/audio_policy.conf:system/etc/audio_policy.conf
 
 # Use HDPI phone dalvik config
@@ -100,6 +101,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.ril.gprsclass=10 \
     ro.telephony.ril_class=QualcommSharedRIL \
     ro.bt.bdaddr_path=/system/etc/bluetooth/bdaddr.txt \
+debug.sf.nobootanimation=1 \
+persist.sys.shutdown.mode=hibernate \
     persist.sys.usb.config=mass_storage \
 
 $(call inherit-product, build/target/product/full.mk)

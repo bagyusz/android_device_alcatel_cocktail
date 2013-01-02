@@ -25,6 +25,11 @@ on emmc-fs
     # torch
     chown camera camera /sys/class/leds/SGM3140_torch_flash/mode
 
+    # notification led
+    chown system system /sys/class/leds/led_notification/mode
+    chown system system /sys/class/leds/led_notification/period
+    chown system system /sys/class/leds/led_notification/duty
+
     # qmux stuff
     mkdir /dev/socket/qmux_radio 0770 radio radio
     chmod 2770 /dev/socket/qmux_radio
@@ -88,5 +93,10 @@ service qmuxd /system/bin/qmuxd
 
 service netmgrd /system/bin/netmgrd
     class main
-    disabled
+
+service cnd /system/bin/cnd
+    class main
+    socket cnd stream 0660 radio radio
+    user radio
+    group radio
 

@@ -11,7 +11,7 @@ PRODUCT_COPY_FILES += \
 
 # bcm4330 bt fw
 PRODUCT_COPY_FILES += \
-    device/alcatel/cocktail/proprietary/BCM4330B1_002.001.003.0087.0000_TCL_Cocktail_TESTONLY.hcd:/system/etc/firmware/bcm4330.hcd
+    device/alcatel/cocktail/proprietary/bcm4330.hcd:/system/etc/firmware/bcm4330.hcd
 
 # video codecs
 PRODUCT_COPY_FILES += \
@@ -72,4 +72,8 @@ PRODUCT_COPY_FILES += \
     device/alcatel/cocktail/proprietary/libdsutils.so:/system/lib/libdsutils.so \
     device/alcatel/cocktail/proprietary/qmuxd:/system/bin/qmuxd \
     device/alcatel/cocktail/proprietary/qmiproxy:/system/bin/qmiproxy \
-    device/alcatel/cocktail/proprietary/netmgrd:/system/bin/netmgrd
+    device/alcatel/cocktail/proprietary/netmgrd:/system/bin/netmgrd \
+    device/alcatel/cocktail/proprietary/cnd:/system/bin/cnd \
+    device/alcatel/cocktail/proprietary/libxml.so:/system/lib/libxml.so \
+    device/alcatel/cocktail/proprietary/libcneutils.so:/system/lib/libcneutils.so \
+    device/alcatel/cocktail/proprietary/libcneqmiutils.so:/system/lib/libcneqmiutils.so
