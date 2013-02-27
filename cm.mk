@@ -5,7 +5,7 @@ $(call inherit-product, device/alcatel/cocktail/full_cocktail.mk)
 $(call inherit-product, vendor/cm/config/gsm.mk)
 
 # Inherit some common CM stuff.
-$(call inherit-product, vendor/cm/config/common_full_phone.mk)
+$(call inherit-product, vendor/cm/config/common_mini_phone.mk)
 
 # Spoof stock fingerprint for now
 PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=one_touch_995_ALEU \

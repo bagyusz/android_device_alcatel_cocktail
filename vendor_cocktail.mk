@@ -1,7 +1,6 @@
 # prebuilt libaudioalsa
 PRODUCT_COPY_FILES += \
-    device/alcatel/cocktail/proprietary/libaudioalsa.so:obj/lib/libaudioalsa.so \
-    device/alcatel/cocktail/proprietary/libaudcal.so:obj/lib/libaudcal.so
+    device/alcatel/cocktail/proprietary/libaudioalsa.so:obj/lib/libaudioalsa.so
 
 # bcm4330 wlan fw
 PRODUCT_COPY_FILES += \
@@ -10,15 +9,42 @@ PRODUCT_COPY_FILES += \
     device/alcatel/cocktail/proprietary/fw_bcmdhd_p2p.bin:/system/etc/firmware/fw_bcmdhd_p2p.bin \
     device/alcatel/cocktail/bcmdhd.cal:/system/etc/wifi/bcmdhd.cal
 
+# omx
+PRODUCT_COPY_FILES += \
+    device/alcatel/cocktail/proprietary/omx/libOmxAacDec.so:/system/lib/libOmxAacDec.so \
+    device/alcatel/cocktail/proprietary/omx/libOmxAacEnc.so:/system/lib/libOmxAacEnc.so \
+    device/alcatel/cocktail/proprietary/omx/libOmxAdpcmDec.so:/system/lib/libOmxAdpcmDec.so \
+    device/alcatel/cocktail/proprietary/omx/libOmxAmrDec.so:/system/lib/libOmxAmrDec.so \
+    device/alcatel/cocktail/proprietary/omx/libOmxAmrEnc.so:/system/lib/libOmxAmrEnc.so \
+    device/alcatel/cocktail/proprietary/omx/libOmxAmrRtpDec.so:/system/lib/libOmxAmrRtpDec.so \
+    device/alcatel/cocktail/proprietary/omx/libOmxAmrwbDec.so:/system/lib/libOmxAmrwbDec.so \
+    device/alcatel/cocktail/proprietary/omx/libOmxEvrcDec.so:/system/lib/libOmxEvrcDec.so \
+    device/alcatel/cocktail/proprietary/omx/libOmxEvrcEnc.so:/system/lib/libOmxEvrcEnc.so \
+    device/alcatel/cocktail/proprietary/omx/libOmxMp3Dec.so:/system/lib/libOmxMp3Dec.so \
+    device/alcatel/cocktail/proprietary/omx/libOmxQcelp13Dec.so:/system/lib/libOmxQcelp13Dec.so \
+    device/alcatel/cocktail/proprietary/omx/libOmxQcelp13Enc.so:/system/lib/libOmxQcelp13Enc.so \
+    device/alcatel/cocktail/proprietary/omx/libOmxQcelpHwDec.so:/system/lib/libOmxQcelpHwDec.so \
+    device/alcatel/cocktail/proprietary/omx/libOmxVdec.so:/system/lib/libOmxVdec.so \
+    device/alcatel/cocktail/proprietary/omx/libOmxVenc.so:/system/lib/libOmxVenc.so \
+    device/alcatel/cocktail/proprietary/omx/libOmxWmaDec.so:/system/lib/libOmxWmaDec.so
+
+# hdmi
+PRODUCT_COPY_FILES += \
+    device/alcatel/cocktail/proprietary/hdmid:/system/bin/hdmid
+
+# USB-OTG modules (995S 3.0.8 Kernel)
+PRODUCT_COPY_FILES += \
+    device/alcatel/cocktail/modules/OTG/fuse.ko:/system/lib/modules/fuse.ko \
+    device/alcatel/cocktail/modules/OTG/hid-logitech.ko:/system/lib/modules/hid-logitech.ko \
+    device/alcatel/cocktail/modules/OTG/hid-microsoft.ko:/system/lib/modules/hid-microsoft.ko \
+    device/alcatel/cocktail/modules/OTG/ntfs.ko:/system/lib/modules/ntfs.ko \
+    device/alcatel/cocktail/modules/OTG/usbhid.ko:/system/lib/modules/usbhid.ko \
+    device/alcatel/cocktail/modules/OTG/usb-storage.ko:/system/lib/modules/usb-storage.ko
 
 # USB-OTG
 PRODUCT_COPY_FILES += \
     device/alcatel/cocktail/proprietary/usbhub:/system/bin/usbhub \
     device/alcatel/cocktail/proprietary/usbhub_init:/system/bin/usbhub_init
-
-# hdmi
-PRODUCT_COPY_FILES += \
-    device/alcatel/cocktail/proprietary/hdmid:/system/bin/hdmid
 
 # bcm4330 bt fw
 PRODUCT_COPY_FILES += \
@@ -52,8 +78,6 @@ PRODUCT_COPY_FILES += \
     device/alcatel/cocktail/proprietary/firmware/vidc_720p_mp4_enc_mc.fw:/system/etc/firmware/vidc_720p_mp4_enc_mc.fw \
     device/alcatel/cocktail/proprietary/firmware/vidc_720p_vc1_dec_mc.fw:/system/etc/firmware/vidc_720p_vc1_dec_mc.fw
 
-
-
 # sensors
 PRODUCT_COPY_FILES += \
     device/alcatel/cocktail/proprietary/sensors.qcom.so:/system/lib/hw/sensors.cocktail.so \
@@ -75,17 +99,13 @@ PRODUCT_COPY_FILES += \
 
 # misc
 PRODUCT_COPY_FILES += \
-    device/alcatel/cocktail/proprietary/rmt_storage:/system/bin/rmt_storage \
+    device/alcatel/cocktail/proprietary/ds_fmc_appd:/system/bin/ds_fmc_appd \
+    device/alcatel/cocktail/prebuilt/thermald.conf:/system/etc/thermald.conf \
+    device/alcatel/cocktail/proprietary/thermald:/system/bin/thermald \
+    device/alcatel/cocktail/proprietary/mm-pp-daemon:/system/bin/mm-pp-daemon \
     device/alcatel/cocktail/proprietary/libaudioalsa.so:/system/lib/libaudioalsa.so \
-    device/alcatel/cocktail/proprietary/libaudcal.so:/system/lib/libaudcal.so \
+    device/alcatel/cocktail/proprietary/rmt_storage:/system/bin/rmt_storage \
     device/alcatel/cocktail/proprietary/lights.msm7630_surf.so:/system/lib/hw/lights.cocktail.so
-
-#    device/alcatel/cocktail/proprietary/libmmosal.so:/system/lib/libmmosal.so \
-# Media libraries
-#PRODUCT_COPY_FILES += \
-#    device/alcatel/cocktail/proprietary/libmmparser.so:/system/lib/libmmparser.so \
-#    device/alcatel/cocktail/proprietary/libwvm.so:/system/lib/libwvm.so \
-#    device/alcatel/cocktail/proprietary/libWVStreamControlAPI_L3.so:/system/lib/libWVStreamControlAPI_L3.so
 
 # camera
 PRODUCT_COPY_FILES += \
@@ -94,13 +114,39 @@ PRODUCT_COPY_FILES += \
     device/alcatel/cocktail/proprietary/libgemini.so:/system/lib/libgemini.so \
     device/alcatel/cocktail/proprietary/libmmipl.so:/system/lib/libmmipl.so \
     device/alcatel/cocktail/proprietary/libmmjpeg.so:/system/lib/libmmjpeg.so \
-    device/alcatel/cocktail/proprietary/libmm-color-convertor.so:/system/lib/libmm-color-convertor.so \
     device/alcatel/cocktail/proprietary/libchromatix_ov5647_preview.so:/system/lib/libchromatix_ov5647_preview.so
 
-#    device/alcatel/cocktail/proprietary/libchromatix_imx074_default_video.so:/system/lib/libchromatix_imx074_default_video.so \
-#    device/alcatel/cocktail/proprietary/libchromatix_imx074_preview.so:/system/lib/libchromatix_imx074_preview.so \
-#    device/alcatel/cocktail/proprietary/libchromatix_imx074_zsl.so:/system/lib/libchromatix_imx074_zsl.so \
-#    device/alcatel/cocktail/proprietary/libchromatix_ov5647_default_video.so:/system/lib/libchromatix_ov5647_default_video.so \
+# modules
+PRODUCT_COPY_FILES += \
+    device/alcatel/cocktail/modules/ansi_cprng.ko:/system/lib/modules/ansi_cprng.ko \
+    device/alcatel/cocktail/modules/cls_flow.ko:/system/lib/modules/cls_flow.ko \
+    device/alcatel/cocktail/modules/cpaccess.ko:/system/lib/modules/cpaccess.ko \
+    device/alcatel/cocktail/modules/dal_remotetest.ko:/system/lib/modules/dal_remotetest.ko \
+    device/alcatel/cocktail/modules/dma_test.ko:/system/lib/modules/dma_test.ko \
+    device/alcatel/cocktail/modules/evbug.ko:/system/lib/modules/evbug.ko \
+    device/alcatel/cocktail/modules/gspca_main.ko:/system/lib/modules/gspca_main.ko \
+    device/alcatel/cocktail/modules/mtd_erasepart.ko:/system/lib/modules/mtd_erasepart.ko \
+    device/alcatel/cocktail/modules/mtd_nandecctest.ko:/system/lib/modules/mtd_nandecctest.ko \
+    device/alcatel/cocktail/modules/mtd_oobtest.ko:/system/lib/modules/mtd_oobtest.ko \
+    device/alcatel/cocktail/modules/mtd_pagetest.ko:/system/lib/modules/mtd_pagetest.ko \
+    device/alcatel/cocktail/modules/mtd_readtest.ko:/system/lib/modules/mtd_readtest.ko \
+    device/alcatel/cocktail/modules/mtd_speedtest.ko:/system/lib/modules/mtd_speedtest.ko \
+    device/alcatel/cocktail/modules/mtd_stresstest.ko:/system/lib/modules/mtd_stresstest.ko \
+    device/alcatel/cocktail/modules/mtd_subpagetest.ko:/system/lib/modules/mtd_subpagetest.ko \
+    device/alcatel/cocktail/modules/mtd_torturetest.ko:/system/lib/modules/mtd_torturetest.ko \
+    device/alcatel/cocktail/modules/oprofile.ko:/system/lib/modules/oprofile.ko \
+    device/alcatel/cocktail/modules/qce.ko:/system/lib/modules/qce.ko \
+    device/alcatel/cocktail/modules/qcedev.ko:/system/lib/modules/qcedev.ko \
+    device/alcatel/cocktail/modules/qcrypto.ko:/system/lib/modules/qcrypto.ko \
+    device/alcatel/cocktail/modules/sch_dsmark.ko:/system/lib/modules/sch_dsmark.ko \
+    device/alcatel/cocktail/modules/scsi_wait_scan.ko:/system/lib/modules/scsi_wait_scan.ko
+
+# vendor lib
+PRODUCT_COPY_FILES += \
+    device/alcatel/cocktail/vendor/lib/libwvdrm_L3.so:/system/vendor/lib/libwvdrm_L3.so \
+    device/alcatel/cocktail/vendor/lib/libwvm.so:/system/vendor/lib/libwvm.so \
+    device/alcatel/cocktail/vendor/lib/libWVStreamControlAPI_L3.so:/system/vendor/lib/libWVStreamControlAPI_L3.so \
+    device/alcatel/cocktail/vendor/lib/drm/libdrmwvmplugin.so:/system/vendor/lib/drm/libdrmwvmplugin.so
 
 # ril
 PRODUCT_COPY_FILES += \

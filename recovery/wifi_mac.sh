@@ -5,7 +5,7 @@ if [ -z $1 ]; then
 fi
 
 if [ $1 == "backup" ]; then
-    grep -sh "^macaddr" /custpack/JRD_custres/wlan/nvram.txt \
+    grep -sh "^macaddr" /system/etc/wifi/bcmdhd.cal \
          /system/etc/wifi/bcmdhd.cal /sdcard/wifi_mac.txt | head -n1 > /sdcard/wifi_mac.txt
 elif [ $1 == "restore" ]; then
     cat /sdcard/wifi_mac.txt >> /system/etc/wifi/bcmdhd.cal

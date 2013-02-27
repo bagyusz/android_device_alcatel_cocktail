@@ -30,7 +30,6 @@ loglevel 3
     export ANDROID_ROOT /system
     export ANDROID_ASSETS /system/app
     export ANDROID_DATA /data
-    export EXTERNAL_STORAGE /mnt/sdcard	
     export ASEC_MOUNTPOINT /mnt/asec
     export LOOP_MOUNTPOINT /mnt/obb
     export BOOTCLASSPATH /system/framework/core.jar:/system/framework/core-junit.jar:/system/framework/bouncycastle.jar:/system/framework/ext.jar:/system/framework/framework.jar:/system/framework/framework2.jar:/system/framework/android.policy.jar:/system/framework/services.jar:/system/framework/apache-xml.jar
@@ -41,19 +40,12 @@ loglevel 3
 
 # Right now vendor lives on the same filesystem as system,
 # but someday that may change.
-    symlink /system/vendor /vendor
-
-# create mountpoints
-    mkdir /mnt 0775 root system
-    mkdir /mnt/sdcard 0000 system system	
+    symlink /system/vendor /vendor	
 	
 # Create cgroup mount point for cpu accounting
     mkdir /acct
     mount cgroup none /acct cpuacct
     mkdir /acct/uid
-
-# Backwards Compat - XXX: Going away in G*
-    symlink /mnt/sdcard /sdcard	
 	
     mkdir /system
     mkdir /data 0771 system system
@@ -240,6 +232,12 @@ on post-fs-data
     chown system system /sys/devices/platform/led_notification.0/leds/led_notification/duty
     chown system system /sys/devices/platform/led_notification.0/leds/led_notification/period
 
+    #integrate google widevine framework begin
+    setprop drm.service.enabled true
+    chmod 0777 /dev/oncrpc/300000ba:00010000
+    #integrate google widevine framework end
+
+
 on boot
 
     start rmt_storage  
@@ -287,8 +285,7 @@ on boot
     chown radio system /sys/android_power/acquire_full_wake_lock
     chown radio system /sys/android_power/acquire_partial_wake_lock
     chown radio system /sys/android_power/release_wake_lock
-    chown system system /sys/power/state
-    chown system system /sys/power/wakeup_count
+    chown radio system /sys/power/state
     chown radio system /sys/power/wake_lock
     chown radio system /sys/power/wake_unlock
     chmod 0660 /sys/power/state
@@ -317,7 +314,7 @@ on boot
     chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
     chmod 0664 /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
     chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
-    chmod 0664 /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq	
+    chmod 0664 /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
 	
     chown system system /sys/class/timed_output/vibrator/enable
     chown system system /sys/class/leds/keyboard-backlight/brightness
@@ -405,11 +402,6 @@ on property:vold.decrypt=trigger_shutdown_framework
 ## Daemon processes to be run by init.
 ##
 
-service rmt_storage /system/bin/rmt_storage /dev/block/mmcblk0p11 /dev/block/mmcblk0p12 /dev/block/mmcblk0p19
-    user root
-    disabled
-
-
 service ueventd /sbin/ueventd
     class core
     critical
@@ -442,6 +434,16 @@ service servicemanager /system/bin/servicemanager
     onrestart restart media
     onrestart restart surfaceflinger
     onrestart restart drm
+
+## added for avoiding bootlogo blink                                                                                        
+service fbbootup /system/etc/fbbootup.sh
+    disabled
+    oneshot
+
+on property:sys.boot_completed=1
+    start fbbootup
+## added end
+
 
 service vold /system/bin/vold
     class core
@@ -486,7 +488,7 @@ service drm /system/bin/drmserver
 service media /system/bin/mediaserver
     class main
     user media
-    group audio camera inet net_bt net_bt_admin net_bw_acct drmrpc qcom_diag
+    group audio camera inet net_bt net_bt_admin net_bw_acct drmrpc
     ioprio rt 4
 
 service bootanim /system/bin/bootanimation

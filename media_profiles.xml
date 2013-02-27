@@ -98,9 +98,9 @@
                    height="720"
                    frameRate="30" />
             <Audio codec="aac"
-                   bitRate="128000"
-                   sampleRate="48000"
-                   channels="1" />
+                   bitRate="96000"
+                   sampleRate="44100"
+                   channels="2" />
         </EncoderProfile>
 
         <EncoderProfile quality="480p" fileFormat="mp4" duration="30">
@@ -110,9 +110,9 @@
                    height="480"
                    frameRate="30" />
             <Audio codec="aac"
-                   bitRate="128000"
-                   sampleRate="48000"
-                   channels="1" />
+                   bitRate="96000"
+                   sampleRate="44100"
+                   channels="2" />
         </EncoderProfile>
 
         <EncoderProfile quality="qcif" fileFormat="3gp" duration="30">
@@ -135,9 +135,9 @@
                    frameRate="30" />
             <!-- audio setting is ignored -->
             <Audio codec="aac"
-                   bitRate="48000"
-                   sampleRate="16000"
-                   channels="1" />
+                   bitRate="96000"
+                   sampleRate="44100"
+                   channels="2" />
         </EncoderProfile>
 
         <EncoderProfile quality="timelapse480p" fileFormat="mp4" duration="30">
@@ -149,8 +149,8 @@
             <!-- audio setting is ignored -->
             <Audio codec="aac"
                    bitRate="96000"
-                   sampleRate="16000"
-                   channels="1" />
+                   sampleRate="44100"
+                   channels="2" />
         </EncoderProfile>
 
         <EncoderProfile quality="timelapseqcif" fileFormat="3gp" duration="30">
@@ -186,7 +186,7 @@
            <Audio codec="aac"
                    bitRate="96000"
                    sampleRate="16000"
-                   channels="1" />
+                   channels="2" />
         </EncoderProfile>
 
         <EncoderProfile quality="qcif" fileFormat="3gp" duration="30">
@@ -211,7 +211,7 @@
             <Audio codec="aac"
                    bitRate="96000"
                    sampleRate="16000"
-                   channels="1" />
+                   channels="2" />
         </EncoderProfile>
 
         <EncoderProfile quality="timelapseqcif" fileFormat="3gp" duration="30">
@@ -244,27 +244,27 @@
          or query the capabilities of the codec at all if it is disabled
     -->
     <VideoEncoderCap name="h264" enabled="true"
-        minBitRate="64000" maxBitRate="3000000"
+        minBitRate="64000" maxBitRate="8000000"
         minFrameWidth="176" maxFrameWidth="1280"
         minFrameHeight="144" maxFrameHeight="720"
-        minFrameRate="15" maxFrameRate="30" />
+        minFrameRate="1" maxFrameRate="30" />
 
     <VideoEncoderCap name="h263" enabled="true"
-        minBitRate="64000" maxBitRate="1000000"
+        minBitRate="64000" maxBitRate="8000000"
         minFrameWidth="176" maxFrameWidth="1280"
         minFrameHeight="144" maxFrameHeight="720"
-        minFrameRate="15" maxFrameRate="30" />
+        minFrameRate="1" maxFrameRate="30" />
 
     <VideoEncoderCap name="m4v" enabled="true"
-        minBitRate="64000" maxBitRate="2000000"
+        minBitRate="64000" maxBitRate="8000000"
         minFrameWidth="176" maxFrameWidth="1280"
         minFrameHeight="144" maxFrameHeight="720"
-        minFrameRate="15" maxFrameRate="30" />
+        minFrameRate="1" maxFrameRate="30" />
 
     <AudioEncoderCap name="aac" enabled="true"
-        minBitRate="8192" maxBitRate="96000"
-        minSampleRate="8000" maxSampleRate="16000"
-        minChannels="1" maxChannels="1" />
+        minBitRate="758" maxBitRate="96000"
+        minSampleRate="8000" maxSampleRate="44100"
+        minChannels="1" maxChannels="2" />
 
     <AudioEncoderCap name="amrwb" enabled="true"
         minBitRate="6600" maxBitRate="23050"
@@ -312,7 +312,7 @@
     <!--
       Codec = h.263, Baseline profile, level 0
     -->
-    <ExportVideoProfile name="h263" profile="1" level="1"/>
+    <ExportVideoProfile name="h263" profile="1" level="128"/>
     <!--
       Codec = mpeg4, Simple profile, level 5
     -->

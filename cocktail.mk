@@ -1,4 +1,4 @@
-$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_small.mk)
 
 # The gps config appropriate for this device
 $(call inherit-product, device/common/gps/gps_us_supl.mk)
@@ -10,10 +10,16 @@ DEVICE_PACKAGE_OVERLAYS += device/alcatel/cocktail/overlay
 
 # Qualcomm scripts
 PRODUCT_COPY_FILES += \
-    device/alcatel/cocktail/prebuilt/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh
+    device/alcatel/cocktail/prebuilt/fbbootup.sh:system/etc/fbbootup.sh \
+    device/alcatel/cocktail/prebuilt/init.qcom.coex.sh:system/etc/init.qcom.coex.sh \
+    device/alcatel/cocktail/prebuilt/init.qcom.sdio.sh:system/etc/init.qcom.sdio.sh
 
-# init.rc and ueventd.rc
+# ramdisk
 PRODUCT_COPY_FILES += \
+    device/alcatel/cocktail/init.qcom.sh:root/init.qcom.sh \
+    device/alcatel/cocktail/init.qcom.ril.path.sh:root/init.qcom.ril.path.sh \
+    device/alcatel/cocktail/init.qcom.usb.sh:root/init.qcom.usb.sh \
+    device/alcatel/cocktail/init.target.rc:root/init.target.rc \
     device/alcatel/cocktail/init.rc:root/init.rc \
     device/alcatel/cocktail/init.cocktail.rc:root/init.cocktail.rc \
     device/alcatel/cocktail/init.cocktail.usb.rc:root/init.cocktail.usb.rc \
@@ -40,7 +46,6 @@ PRODUCT_COPY_FILES += \
     device/alcatel/cocktail/media_profiles.xml:system/etc/media_profiles.xml \
     device/alcatel/cocktail/audio_policy.conf:system/etc/audio_policy.conf
 
-
 # CNE config
 PRODUCT_COPY_FILES += \
    device/alcatel/cocktail/OperatorPolicy.xml:system/etc/OperatorPolicy.xml \
@@ -50,8 +55,7 @@ PRODUCT_COPY_FILES += \
 $(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
 
 # Device uses high-density artwork where available
-PRODUCT_AAPT_CONFIG := normal hdpi hdpi
-PRODUCT_AAPT_PREF_CONFIG := hdpi
+PRODUCT_LOCALES += hdpi
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -102,31 +106,33 @@ PRODUCT_PACKAGES += \
     audio.primary.msm7x30 \
     libaudioutils
 
-# OMX
+# QCOM OMX
 PRODUCT_PACKAGES += \
-    libdivxdrmdecrypt \
-    libI420colorconvert \
     mm-vdec-omx-test \
     mm-venc-omx-test720p \
-    mm-video-driver-test \
-    mm-video-encdrv-test \
-    libOmxCore.so \
-    libOmxVdec.so \
-    libOmxVenc.so \
-    libstagefrighthw
+    libstagefrighthw \
+    libOmxCore \
+    libmm-omxcore \
+    libI420colorconvert \
+    libdivxdrmdecrypt
+
+# Wireless AP
+PRODUCT_PACKAGES += \
+	hostapd_cli \
+	hostapd
 
 # GPS
 PRODUCT_PACKAGES += \
-    librpc \
     gps.cocktail
+
+# Live Wallpapers
+PRODUCT_PACKAGES += \
+    LiveWallpapersPicker \
+    librs_jni
 
 # Misc
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
-
-# Power
-PRODUCT_PACKAGES += \
-    power.msm7x30
 
 # HDMI
 PRODUCT_PACKAGES += \
@@ -137,38 +143,19 @@ PRODUCT_PACKAGES += Torch
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \
-    e2fsck \
     make_ext4fs \
     setup_fs
 
-
+# System properties
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.sf.lcd_density=240 \
     ro.opengles.version=131072 \
-    wifi.interface=wlan0
-
-# System properties
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.cne.UseCne=vendor \
-    persist.cne.UseSwim=false \
-    persist.cne.bat.range.low.med=30 \
-    persist.cne.bat.range.med.high=60 \
-    persist.cne.loc.policy.op=/system/etc/OperatorPolicy.xml \
-    persist.cne.loc.policy.user=/system/etc/UserPolicy.xml \
-    persist.cne.bwbased.rat.sel=false \
-    persist.cne.snsr.based.rat.mgt=false \
-    persist.cne.bat.based.rat.mgt=false \
-    persist.cne.rat.acq.time.out=30000 \
-    persist.cne.rat.acq.retry.tout=0 \
-    persist.cne.nsrm.mode=false \
+    wifi.interface=wlan0 \
+    persist.sys.usb.config=mass_storage \
     debug.sf.nobootanimation=1 \
     persist.sys.shutdown.mode=hibernate \
-    persist.sys.usb.config=mass_storage
-
-
-# QCOM Display
-PRODUCT_PROPERTY_OVERRIDES += \
     debug.sf.hw=1 \
     debug.egl.hw=1
+
 
 $(call inherit-product, build/target/product/full.mk)
