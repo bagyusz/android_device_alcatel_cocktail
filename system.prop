@@ -2,6 +2,10 @@
 # system.prop for OT-995
 #
 
+persist.sys.usb.config=mass_storage,adb
+persist.adb.notify=1
+ro.secure=0
+
 ## system.prop for surf
 rild.libpath=/system/lib/libril-qc-qmi-1.so
 rild.libargs=-d /dev/smd0
@@ -35,19 +39,13 @@ persist.cne.rat.acq.time.out=30000
 persist.cne.rat.acq.retry.tout=0
 persist.cne.sync.swim.mode=false
 
-## system props for the MM modules
+# Faster Streaming
 media.stagefright.enable-player=true
 media.stagefright.enable-meta=true
 media.stagefright.enable-scan=true
 media.stagefright.enable-http=true
-media.stagefright.enable-record=false
-media.stagefright.enable-fma2dp=true
-media.stagefright.enable-aac=true
-media.stagefright.enable-qcp=true
-lpa.use-stagefright=true
 
 ## HDMI&Decode
-lpa.decode=false
 ro.hdmi.enable=true
 ## system props for the data modules
 ro.use_data_netmgrd=true

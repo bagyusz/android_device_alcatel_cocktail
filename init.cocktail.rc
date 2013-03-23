@@ -179,12 +179,20 @@ service hdmid /system/bin/hdmid
     socket hdmid stream 0660 root system graphics
     disabled
 
+    # Remove write permissions to video related nodes
+    chmod 0664 /sys/devices/virtual/graphics/fb1/hpd
+    chmod 0664 /sys/devices/virtual/graphics/fb1/video_mode
+    chmod 0664 /sys/devices/virtual/graphics/fb1/format_3d
+
+    # Change owner and group for media server and surface flinger
+    chown system system /sys/devices/virtual/graphics/fb1/format_3d
+
 service qcom-sh /system/bin/sh /init.qcom.sh
     class late_start
     user root
     oneshot
 
-service hciattach /system/bin/brcm_patchram_plus --enable_hci --no2bytes --tosleep 50000 --baudrate 3000000 --use_baudrate_for_download --patchram /system/etc/firmware/bcm4330.hcd /dev/ttyHS0
+service hciattach /system/bin/brcm_patchram_plus --enable_hci --no2bytes --tosleep 50000 --baudrate 3000000 --use_baudrate_for_download --patchram /system/bin/BCM4330B1_002.001.003.0087.0000_TCL_Cocktail_TESTONLY.hcd /dev/ttyHS0
     class main
     user bluetooth
     group qcom_oncrpc bluetooth net_bt_admin
@@ -195,13 +203,6 @@ service btwlancoex /system/bin/sh /system/etc/init.qcom.coex.sh
     class late_start
     user bluetooth
     group bluetooth net_bt_admin inet net_admin net_raw
-    disabled
-    oneshot
-
-service fm_dl /system/bin/sh /system/etc/init.qcom.fm.sh
-    class late_start
-    user root
-    group system qcom_oncrpc
     disabled
     oneshot
 

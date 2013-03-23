@@ -1,0 +1,32 @@
+From 11de26b4181dfc83a6dd781a8234de2bd5b632e6 Mon Sep 17 00:00:00 2001
+From: Peter Gregus <pete.gregus@gmail.com>
+Date: Sun, 30 Dec 2012 23:30:11 +0100
+Subject: [PATCH] Don't try to load libwvm.so
+
+Change-Id: Ia6487205b81bc98fdb79ecde39288c27c854a19e
+---
+ media/libstagefright/WVMExtractor.cpp |    8 --------
+ 1 files changed, 0 insertions(+), 8 deletions(-)
+
+diff --git a/media/libstagefright/WVMExtractor.cpp b/media/libstagefright/WVMExtractor.cpp
+index d65831d..62d71d9 100644
+--- a/media/libstagefright/WVMExtractor.cpp
++++ b/media/libstagefright/WVMExtractor.cpp
+@@ -74,14 +74,6 @@ WVMExtractor::WVMExtractor(const sp<DataSource> &source)
+ 
+ bool WVMExtractor::getVendorLibHandle()
+ {
+-    if (gVendorLibHandle == NULL) {
+-        gVendorLibHandle = dlopen("libwvm.so", RTLD_NOW);
+-    }
+-
+-    if (gVendorLibHandle == NULL) {
+-        ALOGW("Failed to open libwvm.so");
+-    }
+-
+     return gVendorLibHandle != NULL;
+ }
+ 
+-- 
+1.7.5.4
+

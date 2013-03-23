@@ -1,16 +1,52 @@
-# prebuilt libaudioalsa
+# audio
 PRODUCT_COPY_FILES += \
-    device/alcatel/cocktail/proprietary/libaudioalsa.so:obj/lib/libaudioalsa.so
+    device/alcatel/cocktail/proprietary/libaudcal.so:/system/lib/libaudcal.so \
+    device/alcatel/cocktail/proprietary/libaudioalsa.so:obj/lib/libaudioalsa.so \
+    device/alcatel/cocktail/proprietary/libaudioalsa.so:/system/lib/libaudioalsa.so \
+
+# bcm4330 bt fw
+PRODUCT_COPY_FILES += \
+    device/alcatel/cocktail/proprietary/bcm4330.hcd:/system/bin/BCM4330B1_002.001.003.0087.0000_TCL_Cocktail_TESTONLY.hcd
 
 # bcm4330 wlan fw
 PRODUCT_COPY_FILES += \
-    device/alcatel/cocktail/proprietary/fw_bcmdhd.bin:/system/etc/firmware/fw_bcmdhd.bin \
-    device/alcatel/cocktail/proprietary/fw_bcmdhd_apsta.bin:/system/etc/firmware/fw_bcmdhd_apsta.bin \
-    device/alcatel/cocktail/proprietary/fw_bcmdhd_p2p.bin:/system/etc/firmware/fw_bcmdhd_p2p.bin \
+    device/alcatel/cocktail/proprietary/fw_bcmdhd.bin:/system/etc/wifi/firmware/fw_bcmdhd.bin \
+    device/alcatel/cocktail/proprietary/fw_bcmdhd_apsta.bin:/system/etc/wifi/firmware/fw_bcmdhd_apsta.bin \
+    device/alcatel/cocktail/proprietary/fw_bcmdhd_p2p.bin:/system/etc/wifi/firmware/fw_bcmdhd_p2p.bin \
+    device/alcatel/cocktail/proprietary/fw_bcmdhd_test.bin:/system/etc/wifi/firmware/fw_bcmdhd_test.bin \
     device/alcatel/cocktail/bcmdhd.cal:/system/etc/wifi/bcmdhd.cal
+
+# hdmi
+PRODUCT_COPY_FILES += \
+    device/alcatel/cocktail/proprietary/hdmid:/system/bin/hdmid
+
+# video codecs
+PRODUCT_COPY_FILES += \
+    device/alcatel/cocktail/proprietary/firmware/leia_pfp_470.fw:/system/etc/firmware/leia_pfp_470.fw \
+    device/alcatel/cocktail/proprietary/firmware/leia_pm4_470.fw:/system/etc/firmware/leia_pm4_470.fw \
+    device/alcatel/cocktail/proprietary/firmware/vidc_720p_command_control.fw:/system/etc/firmware/vidc_720p_command_control.fw \
+    device/alcatel/cocktail/proprietary/firmware/vidc_720p_h263_dec_mc.fw:/system/etc/firmware/vidc_720p_h263_dec_mc.fw \
+    device/alcatel/cocktail/proprietary/firmware/vidc_720p_h264_dec_mc.fw:/system/etc/firmware/vidc_720p_h264_dec_mc.fw \
+    device/alcatel/cocktail/proprietary/firmware/vidc_720p_h264_enc_mc.fw:/system/etc/firmware/vidc_720p_h264_enc_mc.fw \
+    device/alcatel/cocktail/proprietary/firmware/vidc_720p_mp4_dec_mc.fw:/system/etc/firmware/vidc_720p_mp4_dec_mc.fw \
+    device/alcatel/cocktail/proprietary/firmware/vidc_720p_mp4_enc_mc.fw:/system/etc/firmware/vidc_720p_mp4_enc_mc.fw \
+    device/alcatel/cocktail/proprietary/firmware/vidc_720p_vc1_dec_mc.fw:/system/etc/firmware/vidc_720p_vc1_dec_mc.fw
+
+# Video
+PRODUCT_COPY_FILES += \
+    device/alcatel/cocktail/proprietary/libdivxdrmdecrypt.so:/system/lib/libdivxdrmdecrypt.so \
+    device/alcatel/cocktail/proprietary/libmm-abl.so:/system/lib/libmm-abl.so \
+    device/alcatel/cocktail/proprietary/libmm-abl-oem.so:/system/lib/libmm-abl-oem.so \
+    device/alcatel/cocktail/proprietary/libmmosal.so:/system/lib/libmmosal.so \
+    device/alcatel/cocktail/proprietary/libmmparser.so:/system/lib/libmmparser.so
 
 # omx
 PRODUCT_COPY_FILES += \
+    device/alcatel/cocktail/proprietary/mm-omx-devmgr:/system/bin/mm-omx-devmgr \
+    device/alcatel/cocktail/proprietary/mm-vdec-omx-test:/system/bin/mm-vdec-omx-test \
+    device/alcatel/cocktail/proprietary/mm-venc-omx-test720p:/system/bin/mm-venc-omx-test720p \
+    device/alcatel/cocktail/proprietary/mm-video-driver-test:/system/bin/mm-video-driver-test \
+    device/alcatel/cocktail/proprietary/mm-video-encdrv-test:/system/bin/mm-video-encdrv-test \
     device/alcatel/cocktail/proprietary/omx/libOmxAacDec.so:/system/lib/libOmxAacDec.so \
     device/alcatel/cocktail/proprietary/omx/libOmxAacEnc.so:/system/lib/libOmxAacEnc.so \
     device/alcatel/cocktail/proprietary/omx/libOmxAdpcmDec.so:/system/lib/libOmxAdpcmDec.so \
@@ -28,27 +64,19 @@ PRODUCT_COPY_FILES += \
     device/alcatel/cocktail/proprietary/omx/libOmxVenc.so:/system/lib/libOmxVenc.so \
     device/alcatel/cocktail/proprietary/omx/libOmxWmaDec.so:/system/lib/libOmxWmaDec.so
 
-# hdmi
-PRODUCT_COPY_FILES += \
-    device/alcatel/cocktail/proprietary/hdmid:/system/bin/hdmid
-
 # USB-OTG modules (995S 3.0.8 Kernel)
-PRODUCT_COPY_FILES += \
-    device/alcatel/cocktail/modules/OTG/fuse.ko:/system/lib/modules/fuse.ko \
-    device/alcatel/cocktail/modules/OTG/hid-logitech.ko:/system/lib/modules/hid-logitech.ko \
-    device/alcatel/cocktail/modules/OTG/hid-microsoft.ko:/system/lib/modules/hid-microsoft.ko \
-    device/alcatel/cocktail/modules/OTG/ntfs.ko:/system/lib/modules/ntfs.ko \
-    device/alcatel/cocktail/modules/OTG/usbhid.ko:/system/lib/modules/usbhid.ko \
-    device/alcatel/cocktail/modules/OTG/usb-storage.ko:/system/lib/modules/usb-storage.ko
+#PRODUCT_COPY_FILES += \
+#    device/alcatel/cocktail/modules/OTG/fuse.ko:/system/lib/modules/fuse.ko \
+#    device/alcatel/cocktail/modules/OTG/hid-logitech.ko:/system/lib/modules/hid-logitech.ko \
+#    device/alcatel/cocktail/modules/OTG/hid-microsoft.ko:/system/lib/modules/hid-microsoft.ko \
+#    device/alcatel/cocktail/modules/OTG/ntfs.ko:/system/lib/modules/ntfs.ko \
+#    device/alcatel/cocktail/modules/OTG/usbhid.ko:/system/lib/modules/usbhid.ko \
+#    device/alcatel/cocktail/modules/OTG/usb-storage.ko:/system/lib/modules/usb-storage.ko
 
 # USB-OTG
 PRODUCT_COPY_FILES += \
     device/alcatel/cocktail/proprietary/usbhub:/system/bin/usbhub \
     device/alcatel/cocktail/proprietary/usbhub_init:/system/bin/usbhub_init
-
-# bcm4330 bt fw
-PRODUCT_COPY_FILES += \
-    device/alcatel/cocktail/proprietary/bcm4330.hcd:/system/etc/firmware/bcm4330.hcd
 
 # battery
 PRODUCT_COPY_FILES += \
@@ -66,21 +94,10 @@ PRODUCT_COPY_FILES += \
     device/alcatel/cocktail/proprietary/battery_charge_full.rle:/system/battery_charge_full.rle \
     device/alcatel/cocktail/proprietary/initlogo.rle:/system/initlogo.rle
 
-# video codecs
-PRODUCT_COPY_FILES += \
-    device/alcatel/cocktail/proprietary/firmware/leia_pfp_470.fw:/system/etc/firmware/leia_pfp_470.fw \
-    device/alcatel/cocktail/proprietary/firmware/leia_pm4_470.fw:/system/etc/firmware/leia_pm4_470.fw \
-    device/alcatel/cocktail/proprietary/firmware/vidc_720p_command_control.fw:/system/etc/firmware/vidc_720p_command_control.fw \
-    device/alcatel/cocktail/proprietary/firmware/vidc_720p_h263_dec_mc.fw:/system/etc/firmware/vidc_720p_h263_dec_mc.fw \
-    device/alcatel/cocktail/proprietary/firmware/vidc_720p_h264_dec_mc.fw:/system/etc/firmware/vidc_720p_h264_dec_mc.fw \
-    device/alcatel/cocktail/proprietary/firmware/vidc_720p_h264_enc_mc.fw:/system/etc/firmware/vidc_720p_h264_enc_mc.fw \
-    device/alcatel/cocktail/proprietary/firmware/vidc_720p_mp4_dec_mc.fw:/system/etc/firmware/vidc_720p_mp4_dec_mc.fw \
-    device/alcatel/cocktail/proprietary/firmware/vidc_720p_mp4_enc_mc.fw:/system/etc/firmware/vidc_720p_mp4_enc_mc.fw \
-    device/alcatel/cocktail/proprietary/firmware/vidc_720p_vc1_dec_mc.fw:/system/etc/firmware/vidc_720p_vc1_dec_mc.fw
-
 # sensors
 PRODUCT_COPY_FILES += \
     device/alcatel/cocktail/proprietary/sensors.qcom.so:/system/lib/hw/sensors.cocktail.so \
+    device/alcatel/cocktail/proprietary/lights.msm7630_surf.so:/system/lib/hw/lights.cocktail.so \
     device/alcatel/cocktail/proprietary/akmd8975:/system/bin/akmd8975
 
 # adreno
@@ -103,18 +120,26 @@ PRODUCT_COPY_FILES += \
     device/alcatel/cocktail/prebuilt/thermald.conf:/system/etc/thermald.conf \
     device/alcatel/cocktail/proprietary/thermald:/system/bin/thermald \
     device/alcatel/cocktail/proprietary/mm-pp-daemon:/system/bin/mm-pp-daemon \
-    device/alcatel/cocktail/proprietary/libaudioalsa.so:/system/lib/libaudioalsa.so \
-    device/alcatel/cocktail/proprietary/rmt_storage:/system/bin/rmt_storage \
-    device/alcatel/cocktail/proprietary/lights.msm7630_surf.so:/system/lib/hw/lights.cocktail.so
+    device/alcatel/cocktail/proprietary/rmt_storage:/system/bin/rmt_storage
 
 # camera
 PRODUCT_COPY_FILES += \
+    device/alcatel/cocktail/proprietary/mm-qcamera-daemon:/system/bin/mm-qcamera-daemon \
+    device/alcatel/cocktail/proprietary/mm-qcamera-test:/system/bin/mm-qcamera-test \
+    device/alcatel/cocktail/proprietary/mm-qcamera-testsuite-client:/system/bin/mm-qcamera-testsuite-client \
+    device/alcatel/cocktail/proprietary/v4l2-qcamera-app:/system/bin/v4l2-qcamera-app \
     device/alcatel/cocktail/proprietary/camera.msm7630_surf.so:/system/lib/hw/camera.cocktail.so \
+    device/alcatel/cocktail/proprietary/libcamera_client.so:/system/lib/libcamera_client.so \
     device/alcatel/cocktail/proprietary/liboemcamera.so:/system/lib/liboemcamera.so \
     device/alcatel/cocktail/proprietary/libgemini.so:/system/lib/libgemini.so \
     device/alcatel/cocktail/proprietary/libmmipl.so:/system/lib/libmmipl.so \
     device/alcatel/cocktail/proprietary/libmmjpeg.so:/system/lib/libmmjpeg.so \
+    device/alcatel/cocktail/proprietary/libchromatix_imx074_default_video.so:/system/lib/libchromatix_imx074_default_video.so \
+    device/alcatel/cocktail/proprietary/libchromatix_imx074_preview.so:/system/lib/libchromatix_imx074_preview.so \
+    device/alcatel/cocktail/proprietary/libchromatix_imx074_zsl.so:/system/lib/libchromatix_imx074_zsl.so \
+    device/alcatel/cocktail/proprietary/libchromatix_ov5647_default_video.so:/system/lib/libchromatix_ov5647_default_video.so \
     device/alcatel/cocktail/proprietary/libchromatix_ov5647_preview.so:/system/lib/libchromatix_ov5647_preview.so
+
 
 # modules
 PRODUCT_COPY_FILES += \
@@ -140,13 +165,6 @@ PRODUCT_COPY_FILES += \
     device/alcatel/cocktail/modules/qcrypto.ko:/system/lib/modules/qcrypto.ko \
     device/alcatel/cocktail/modules/sch_dsmark.ko:/system/lib/modules/sch_dsmark.ko \
     device/alcatel/cocktail/modules/scsi_wait_scan.ko:/system/lib/modules/scsi_wait_scan.ko
-
-# vendor lib
-PRODUCT_COPY_FILES += \
-    device/alcatel/cocktail/vendor/lib/libwvdrm_L3.so:/system/vendor/lib/libwvdrm_L3.so \
-    device/alcatel/cocktail/vendor/lib/libwvm.so:/system/vendor/lib/libwvm.so \
-    device/alcatel/cocktail/vendor/lib/libWVStreamControlAPI_L3.so:/system/vendor/lib/libWVStreamControlAPI_L3.so \
-    device/alcatel/cocktail/vendor/lib/drm/libdrmwvmplugin.so:/system/vendor/lib/drm/libdrmwvmplugin.so
 
 # ril
 PRODUCT_COPY_FILES += \

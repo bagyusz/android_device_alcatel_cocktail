@@ -17,5 +17,6 @@ TARGET_SCREEN_HEIGHT := 800
 TARGET_SCREEN_WIDTH := 480
 
 ## Device identifier. This must come after all inclusions
+PRODUCT_RELEASE_NAME := OT-995
 PRODUCT_NAME := cm_cocktail
 PRODUCT_DEVICE := cocktail

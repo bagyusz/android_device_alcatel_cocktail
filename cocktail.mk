@@ -10,7 +10,6 @@ DEVICE_PACKAGE_OVERLAYS += device/alcatel/cocktail/overlay
 
 # Qualcomm scripts
 PRODUCT_COPY_FILES += \
-    device/alcatel/cocktail/prebuilt/fbbootup.sh:system/etc/fbbootup.sh \
     device/alcatel/cocktail/prebuilt/init.qcom.coex.sh:system/etc/init.qcom.coex.sh \
     device/alcatel/cocktail/prebuilt/init.qcom.sdio.sh:system/etc/init.qcom.sdio.sh
 
@@ -35,6 +34,10 @@ PRODUCT_COPY_FILES += \
     device/alcatel/cocktail/ft5306_ts.kcm:system/usr/keychars/ft5306_ts.kcm \
     device/alcatel/cocktail/ft5306_ts.kl:system/usr/keylayout/ft5306_ts.kl \
 
+# p2p
+PRODUCT_COPY_FILES += \
+    device/alcatel/cocktail/prebuilt/p2p_supplicant.conf:system/etc/wifi/p2p_supplicant.conf
+
 # apn fix
 PRODUCT_COPY_FILES += \
     device/alcatel/cocktail/prebuilt/apns-conf.xml:system/etc/apns-conf.xml \
@@ -54,8 +57,9 @@ PRODUCT_COPY_FILES += \
 # Use HDPI phone dalvik config
 $(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
 
-# Device uses high-density artwork where available
-PRODUCT_LOCALES += hdpi
+# use high-density artwork where available
+PRODUCT_AAPT_CONFIG := normal hdpi
+PRODUCT_AAPT_PREF_CONFIG := hdpi
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -87,7 +91,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_KERNEL):kernel
 
 
-# Additional packages
+# Video
 PRODUCT_PACKAGES += \
     copybit.msm7x30 \
     gralloc.msm7x30 \
@@ -106,20 +110,20 @@ PRODUCT_PACKAGES += \
     audio.primary.msm7x30 \
     libaudioutils
 
-# QCOM OMX
+# Video
 PRODUCT_PACKAGES += \
-    mm-vdec-omx-test \
-    mm-venc-omx-test720p \
     libstagefrighthw \
-    libOmxCore \
     libmm-omxcore \
-    libI420colorconvert \
-    libdivxdrmdecrypt
+    libOmxCore
 
 # Wireless AP
 PRODUCT_PACKAGES += \
-	hostapd_cli \
-	hostapd
+    hostapd_cli \
+    hostapd
+
+# power
+PRODUCT_PACKAGES += \
+    power.msm7x30
 
 # GPS
 PRODUCT_PACKAGES += \
@@ -127,16 +131,14 @@ PRODUCT_PACKAGES += \
 
 # Live Wallpapers
 PRODUCT_PACKAGES += \
+    LiveWallpapers \
     LiveWallpapersPicker \
+    VisualizationWallpapers \
     librs_jni
 
 # Misc
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
-
-# HDMI
-PRODUCT_PACKAGES += \
-    hdmid
 
 # Ship Torch
 PRODUCT_PACKAGES += Torch
@@ -151,11 +153,13 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.sf.lcd_density=240 \
     ro.opengles.version=131072 \
     wifi.interface=wlan0 \
-    persist.sys.usb.config=mass_storage \
     debug.sf.nobootanimation=1 \
     persist.sys.shutdown.mode=hibernate \
+    debug.composition.type=gpu \
     debug.sf.hw=1 \
     debug.egl.hw=1
 
+# we have enough storage space to hold precise GC data
+PRODUCT_TAGS += dalvik.gc.type-precise
 
 $(call inherit-product, build/target/product/full.mk)
