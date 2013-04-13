@@ -2,11 +2,6 @@
 # system.prop for OT-995
 #
 
-persist.sys.usb.config=mass_storage,adb
-persist.adb.notify=1
-ro.secure=0
-
-## system.prop for surf
 rild.libpath=/system/lib/libril-qc-qmi-1.so
 rild.libargs=-d /dev/smd0
 persist.rild.nitz_plmn=
@@ -39,29 +34,56 @@ persist.cne.rat.acq.time.out=30000
 persist.cne.rat.acq.retry.tout=0
 persist.cne.sync.swim.mode=false
 
-# Faster Streaming
-media.stagefright.enable-player=true
-media.stagefright.enable-meta=true
-media.stagefright.enable-scan=true
-media.stagefright.enable-http=true
+# Qualcomm
+com.qc.hardware=true
+ro.vendor.extension_library=/system/lib/libqc-opt.so
+
+# Dalvik
+dalvik.vm.checkjni=0
+dalvik.vm.dexopt-data-only=1
+dalvik.vm.dexopt-flags=v=a,o=v,m=y,u=y
+dalvik.vm.execution-mode=int:jit
+
+# Display
+debug.sf.hw=1
+ro.max.fling_velocity=4000
+ro.opengles.version=131072
+ro.sf.lcd_density=240
+
+# Memory
+ro.zram.default=0
+persist.sys.purgeable_assets=1
+sys.mem.max_hidden_apps=10
+
+# USB
+persist.sys.usb.config=mass_storage,adb
+persist.service.adb.enable=1
+
+# Wifi
+wifi.interface=wlan0
+wifi.supplicant_scan_interval=60
+
+# Proxyimity
+ro.lge.proximity.delay=25
+mot.proximity.delay=25
 
 ## HDMI&Decode
 ro.hdmi.enable=true
+
 ## system props for the data modules
 ro.use_data_netmgrd=true
+
 ## system prop for Bluetooth Dialup Networking
 ro.qualcomm.bluetooth.dun=true
+
 ## system prop for Bluetooth Auto connect for remote initated connections
 ro.bluetooth.remote.autoconnect=true
+
 ## System prop to disable strict mode flash on display
 persist.sys.strictmode.visual=false
-## system prop for multi rild (DSDS case)
-ro.multi.rild=false
+
 ## system prop for Bluetooth FTP profile
 ro.qualcomm.bluetooth.ftp=true
+
 ## system prop for requesting Master role in incoming Bluetooth connection.
 ro.bluetooth.request.master=true
-## LCD
-ro.sf.lcd_density=240
-## System prop for capping scroll velocity
-ro.max.fling_velocity=4000

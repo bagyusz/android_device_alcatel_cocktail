@@ -10,18 +10,19 @@ DEVICE_PACKAGE_OVERLAYS += device/alcatel/cocktail/overlay
 
 # Qualcomm scripts
 PRODUCT_COPY_FILES += \
-    device/alcatel/cocktail/prebuilt/init.qcom.coex.sh:system/etc/init.qcom.coex.sh \
+    device/alcatel/cocktail/prebuilt/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh \
     device/alcatel/cocktail/prebuilt/init.qcom.sdio.sh:system/etc/init.qcom.sdio.sh
+
+# CNE config
+PRODUCT_COPY_FILES += \
+   device/alcatel/cocktail/prebuilt/OperatorPolicy.xml:system/etc/OperatorPolicy.xml \
+   device/alcatel/cocktail/prebuilt/UserPolicy.xml:system/etc/UserPolicy.xml
 
 # ramdisk
 PRODUCT_COPY_FILES += \
-    device/alcatel/cocktail/init.qcom.sh:root/init.qcom.sh \
-    device/alcatel/cocktail/init.qcom.ril.path.sh:root/init.qcom.ril.path.sh \
-    device/alcatel/cocktail/init.qcom.usb.sh:root/init.qcom.usb.sh \
-    device/alcatel/cocktail/init.target.rc:root/init.target.rc \
+    device/alcatel/cocktail/init.cocktail.usb.rc:root/init.cocktail.usb.rc \
     device/alcatel/cocktail/init.rc:root/init.rc \
     device/alcatel/cocktail/init.cocktail.rc:root/init.cocktail.rc \
-    device/alcatel/cocktail/init.cocktail.usb.rc:root/init.cocktail.usb.rc \
     device/alcatel/cocktail/ueventd.cocktail.rc:root/ueventd.cocktail.rc
 
 # vold
@@ -30,13 +31,14 @@ PRODUCT_COPY_FILES += \
 
 # Input config
 PRODUCT_COPY_FILES += \
-    device/alcatel/cocktail/ft5306_ts.idc:system/usr/idc/ft5306_ts.idc \
-    device/alcatel/cocktail/ft5306_ts.kcm:system/usr/keychars/ft5306_ts.kcm \
-    device/alcatel/cocktail/ft5306_ts.kl:system/usr/keylayout/ft5306_ts.kl \
-
-# p2p
-PRODUCT_COPY_FILES += \
-    device/alcatel/cocktail/prebuilt/p2p_supplicant.conf:system/etc/wifi/p2p_supplicant.conf
+    device/alcatel/cocktail/keyfiles/surf_keypad.kcm:system/usr/keychars/surf_keypad.kcm \
+    device/alcatel/cocktail/keyfiles/7k_handset.kl:system/usr/keylayout/7k_handset.kl \
+    device/alcatel/cocktail/keyfiles/fluid-keypad.kl:system/usr/keylayout/fluid-keypad.kl \
+    device/alcatel/cocktail/keyfiles/msm_tma300_ts.kl:system/usr/keylayout/msm_tma300_ts.kl \
+    device/alcatel/cocktail/keyfiles/surf_keypad.kl:system/usr/keylayout/surf_keypad.kl \
+    device/alcatel/cocktail/keyfiles/ft5306_ts.idc:system/usr/idc/ft5306_ts.idc \
+    device/alcatel/cocktail/keyfiles/ft5306_ts.kcm:system/usr/keychars/ft5306_ts.kcm \
+    device/alcatel/cocktail/keyfiles/ft5306_ts.kl:system/usr/keylayout/ft5306_ts.kl
 
 # apn fix
 PRODUCT_COPY_FILES += \
@@ -49,17 +51,10 @@ PRODUCT_COPY_FILES += \
     device/alcatel/cocktail/media_profiles.xml:system/etc/media_profiles.xml \
     device/alcatel/cocktail/audio_policy.conf:system/etc/audio_policy.conf
 
-# CNE config
-PRODUCT_COPY_FILES += \
-   device/alcatel/cocktail/OperatorPolicy.xml:system/etc/OperatorPolicy.xml \
-   device/alcatel/cocktail/UserPolicy.xml:system/etc/UserPolicy.xml
-
-# Use HDPI phone dalvik config
-$(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
-
 # use high-density artwork where available
 PRODUCT_AAPT_CONFIG := normal hdpi
 PRODUCT_AAPT_PREF_CONFIG := hdpi
+PRODUCT_LOCALES += hdpi
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -68,17 +63,22 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
     frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
     frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
-    frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
     frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
     frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
     frameworks/native/data/etc/android.hardware.sensor.compass.xml:system/etc/permissions/android.hardware.sensor.compass.xml \
     frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
     frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:system/etc/permissions/android.hardware.sensor.gyroscope.xml \
-    frameworks/native/data/etc/android.hardware.touchscreen.multitouch.distinct.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.distinct.xml \
+    frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
     frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
     frameworks/native/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
+    frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
+    frameworks/native/data/etc/android.software.sip.xml:system/etc/permissions/android.software.sip.xml \
     packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml
+
+# Bletooth
+PRODUCT_COPY_FILES += \
+    system/bluetooth/data/main.le.conf:system/etc/bluetooth/main.conf
 
 # Kernel - prebuilt for now
 ifeq ($(TARGET_PREBUILT_KERNEL),)
@@ -89,7 +89,6 @@ endif
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_KERNEL):kernel
-
 
 # Video
 PRODUCT_PACKAGES += \
@@ -110,20 +109,24 @@ PRODUCT_PACKAGES += \
     audio.primary.msm7x30 \
     libaudioutils
 
-# Video
 PRODUCT_PACKAGES += \
-    libstagefrighthw \
     libmm-omxcore \
-    libOmxCore
+    libOmxCore \
+    libOmxVenc \
+    libOmxVdec \
+    libstagefrighthw \
+    libI420colorconvert
+
+# Video
+#PRODUCT_PACKAGES += \
+#    libstagefrighthw \
+#    libmm-omxcore \
+#    libOmxCore
 
 # Wireless AP
 PRODUCT_PACKAGES += \
     hostapd_cli \
     hostapd
-
-# power
-PRODUCT_PACKAGES += \
-    power.msm7x30
 
 # GPS
 PRODUCT_PACKAGES += \
@@ -131,14 +134,8 @@ PRODUCT_PACKAGES += \
 
 # Live Wallpapers
 PRODUCT_PACKAGES += \
-    LiveWallpapers \
     LiveWallpapersPicker \
-    VisualizationWallpapers \
     librs_jni
-
-# Misc
-PRODUCT_PACKAGES += \
-    com.android.future.usb.accessory
 
 # Ship Torch
 PRODUCT_PACKAGES += Torch
@@ -148,18 +145,12 @@ PRODUCT_PACKAGES += \
     make_ext4fs \
     setup_fs
 
-# System properties
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.sf.lcd_density=240 \
-    ro.opengles.version=131072 \
-    wifi.interface=wlan0 \
-    debug.sf.nobootanimation=1 \
-    persist.sys.shutdown.mode=hibernate \
-    debug.composition.type=gpu \
-    debug.sf.hw=1 \
-    debug.egl.hw=1
-
-# we have enough storage space to hold precise GC data
-PRODUCT_TAGS += dalvik.gc.type-precise
-
+$(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4330/device-bcm.mk)
+$(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
 $(call inherit-product, build/target/product/full.mk)
+
+PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
+PRODUCT_NAME := full_cocktail
+PRODUCT_DEVICE := cocktail
+PRODUCT_MANUFACTURER := Alcatel
+PRODUCT_MODEL := OT-995
