@@ -17,9 +17,4 @@
 #
 
 touch.deviceType = touchScreen
-touch.orientationAware = 1
 
-touch.pressure.calibration = none
-touch.orientation.calibration = none
-
-device.internal = 1

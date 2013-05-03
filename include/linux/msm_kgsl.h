@@ -27,14 +27,12 @@
 #define KGSL_FLAGS_SOFT_RESET  0x00000100
 
 /* Clock flags to show which clocks should be controled by a given platform */
-#define KGSL_CLK_SRC		0x00000001
-#define KGSL_CLK_CORE_2D	0x00000002
-#define KGSL_CLK_IFACE_2D	0x00000004
-#define KGSL_CLK_MEM		0x00000008
-#define KGSL_CLK_MEM_IFACE 	0x00000010
-#define KGSL_CLK_AXI		0x00000020
-#define KGSL_CLK_CORE_3D	0x00000040
-#define KGSL_CLK_IFACE_3D	0x00000080
+#define KGSL_CLK_SRC	0x00000001
+#define KGSL_CLK_CORE	0x00000002
+#define KGSL_CLK_IFACE	0x00000004
+#define KGSL_CLK_MEM	0x00000008
+#define KGSL_CLK_MEM_IFACE 0x00000010
+#define KGSL_CLK_AXI	0x00000020
 
 /*
  * Reset status values for context
@@ -159,7 +157,6 @@ struct kgsl_device_platform_data {
 	int num_levels;
 	int (*set_grp_async)(void);
 	unsigned int idle_timeout;
-	bool strtstp_sleepwake;
 	unsigned int nap_allowed;
 	unsigned int clk_map;
 	unsigned int idle_needed;

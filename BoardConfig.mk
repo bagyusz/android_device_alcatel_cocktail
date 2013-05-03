@@ -1,81 +1,130 @@
-#
-# Board & CPU
-#
+LOCAL_PATH := $(call my-dir)
+
 TARGET_NO_BOOTLOADER := true
+TARGET_NO_RADIOIMAGE := true
+
+TARGET_BOOTLOADER_BOARD_NAME := cocktail
 TARGET_BOARD_PLATFORM := msm7x30
+TARGET_BOARD_PLATFORM_GPU := qcom-adreno200
+
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_ARCH_VARIANT := armv7-a-neon
 ARCH_ARM_HAVE_TLS_REGISTER := true
+ARCH_ARM_HAVE_VFP := true
+USE_MALLOC_ALIGNMENT := 16
 
-#
+TARGET_EXTRA_CFLAGS += $(call cc-option,-march=armv7-a -mtune=cortex-a8)
+TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
+TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
+TARGET_USE_SCORPION_BIONIC_OPTIMIZATION := true
+TARGET_USE_SCORPION_PLD_SET := true
+TARGET_SCORPION_BIONIC_PLDOFFS := 6
+TARGET_SCORPION_BIONIC_PLDSIZE := 128
+
+TARGET_SPECIFIC_HEADER_PATH := device/alcatel/cocktail/include
+
 # Kernel/bootimg
-#
 BOARD_KERNEL_CMDLINE := console=ttyDCC0 androidboot.hardware=cocktail
 BOARD_KERNEL_BASE := 0x00200000
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_FORCE_RAMDISK_ADDRESS := 0x01300000
 BOARD_FLASH_BLOCK_SIZE := 1
 
-#
 # Partition sizes
-#
-BOARD_BOOTIMAGE_PARTITION_SIZE := 5242880
-BOARD_RECOVERYIMAGE_PARTITION_SIZE := 5242880
-BOARD_SYSTEMIMAGE_PARTITION_SIZE := 262144000
-BOARD_USERDATAIMAGE_PARTITION_SIZE := 1064304640
-
-#
-# Recovery
-#
-BOARD_HAS_NO_SELECT_BUTTON := true
-BOARD_RECOVERY_NO_FLASH := true
-
-
-TARGET_PREBUILT_KERNEL := device/tct/cocktail/kernel
-TARGET_RECOVERY_INITRC := device/tct/cocktail/init.recovery.rc
-
-#
-# Misc
-#
-BOARD_EGL_CFG := device/tct/cocktail/egl.cfg
-
 TARGET_USERIMAGES_USE_EXT4 := true
-TARGET_SPECIFIC_HEADER_PATH := device/tct/cocktail/include
+BOARD_BOOTIMAGE_PARTITION_SIZE := 0x0500000 # boot ~5Mb
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x0700000 # recovery ~7Mb # cwm ~6.8mb
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 262144000 # system ~256Mb
+#BOARD_SYSTEMIMAGE_PARTITION_SIZE := 314572800 # custpack=system/app ~300Mb
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 1064304640 # data ~1GB
+#BOARD_CACHEIMAGE_PARTITION_SIZE := 209715200 # cache ~200Mb
+BOARD_FLASH_BLOCK_SIZE := 4096
 
+# Internal storage
+BOARD_HAS_SDCARD_INTERNAL := true
+BOARD_SDCARD_DEVICE_PRIMARY := /dev/block/mmcblk1p1
+#BOARD_SDEXT_DEVICE          := /dev/block/mmcblk1p1
+
+# Input
+BOARD_USE_LEGACY_TOUCHSCREEN := true
+BOARD_HAS_NO_SELECT_BUTTON := true
+
+# kernel
+TARGET_PREBUILT_KERNEL := device/alcatel/cocktail/kernel
+
+# Recovery
+TARGET_PROVIDES_INIT := true
+TARGET_PROVIDES_INIT_TARGET_RC := true
+#TARGET_PREBUILT_RECOVERY_KERNEL := device/alcatel/cocktail/kernel_recovery # cwm_kernel patch fail..
+TARGET_RECOVERY_INITRC := device/alcatel/cocktail/init.recovery.rc
+TARGET_RECOVERY_FSTAB := device/alcatel/cocktail/recovery.fstab # SDcard mount fix
+
+# QCOM Display
+BOARD_EGL_CFG := device/alcatel/cocktail/egl.cfg
+BOARD_USES_ADRENO_200 := true
+COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE -DSCREEN_RELEASE -DREFRESH_RATE=60
+TARGET_USES_C2D_COMPOSITION := true
+TARGET_NO_HW_VSYNC := true
+#TARGET_USES_SF_BYPASS := true
+#TARGET_HAVE_BYPASS := true
+#TARGET_USES_OVERLAY := true
+TARGET_QCOM_HDMI_OUT := true
+TARGET_QCOM_HDMI_RESOLUTION_AUTO := true
+#TARGET_GRALLOC_USES_ASHMEM := true
+#TARGET_USES_GENLOCK := true
+BOARD_ADRENO_DECIDE_TEXTURE_TARGET := true
+
+# Camera
 USE_CAMERA_STUB := true
 
-#
-# Qualcomm stuff
-#
+# Audio
+BOARD_USES_GENERIC_AUDIO := true
+
+# FM Radio
+BOARD_HAVE_FM_RADIO := true
+BOARD_FM_DEVICE := bcm4330
+BOARD_GLOBAL_CFLAGS += -DHAVE_FM_RADIO
+
+# Boot animation speedup
+TARGET_BOOTANIMATION_PRELOAD := true
+TARGET_BOOTANIMATION_TEXTURE_CACHE := true
+
+# Webkit
+USE_OPENGL_RENDERER := true
+ENABLE_WEBGL := true
+TARGET_FORCE_CPU_UPLOAD := true
+DYNAMIC_SHARED_LIBV8SO := true
+WEBCORE_INPAGE_VIDEO := true
+
+# QCOM
+BOARD_USES_QCOM_GPS := true
 BOARD_USES_QCOM_HARDWARE := true
-TARGET_USES_C2D_COMPOSITION := true
-BOARD_GENLOCK_COMPAT := true
+BOARD_USES_QCOM_LIBRPC := true
+BOARD_USES_QCOM_LIBS := true
+#BOARD_USE_QCOM_PMEM := true
+BOARD_VENDOR_QCOM_AMSS_VERSION := 6225
+BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := cocktail
+BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 50000
 
-# Temporary hack, should be determined using BOARD_USES_QCOM_HARDWARE
-COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE
+# radio interface
+BOARD_MOBILEDATA_INTERFACE_NAME = "rmnet0"
 
-#
 # WiFi
-#
-WPA_SUPPLICANT_VERSION      := VER_0_8_X
+WIFI_BAND                   := 802_11_ABGN
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
+WPA_SUPPLICANT_VERSION      := VER_0_8_X
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_bcmdhd
 BOARD_HOSTAPD_DRIVER        := NL80211
 BOARD_HOSTAPD_PRIVATE_LIB   := lib_driver_cmd_bcmdhd
 BOARD_WLAN_DEVICE           := bcmdhd
 BOARD_WLAN_DEVICE_REV       := bcm4330_b2
-WIFI_DRIVER_FW_PATH_PARAM   := "/sys/module/bcm4330/parameters/firmware_path"
-WIFI_DRIVER_MODULE_NAME     := "bcm4330"
-WIFI_DRIVER_MODULE_PATH     := "/system/lib/modules/bcm4330.ko"
-WIFI_DRIVER_MODULE_ARG      := "nvram_path=/system/etc/firmware/nvram.txt"
-WIFI_DRIVER_FW_PATH_STA     := "/system/etc/firmware/fw_bcmdhd.bin"
-WIFI_DRIVER_FW_PATH_AP      := "/system/etc/firmware/fw_bcmdhd_apsta.bin"
-WIFI_DRIVER_FW_PATH_P2P     := "/system/etc/firmware/fw_bcmdhd_p2p.bin"
+WIFI_DRIVER_FW_PATH_PARAM   := "/sys/module/bcmdhd/parameters/firmware_path"
+WIFI_DRIVER_FW_PATH_STA     := "/system/etc/wifi/firmware/fw_bcmdhd.bin"
+WIFI_DRIVER_FW_PATH_AP      := "/system/etc/wifi/firmware/fw_bcmdhd_apsta.bin"
+WIFI_DRIVER_FW_PATH_P2P     := "/system/etc/wifi/firmware/fw_bcmdhd_p2p.bin"
+BOARD_LEGACY_NL80211_STA_EVENTS := true
 
-#
 # Bluetooth
-#
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
-

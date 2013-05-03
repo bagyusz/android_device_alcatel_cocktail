@@ -1,20 +1,29 @@
+# Specify phone tech before including full_phone
 $(call inherit-product, vendor/cm/config/gsm.mk)
 
-PRODUCT_RELEASE_NAME := cocktail
-
 # Inherit some common CM stuff.
-$(call inherit-product, vendor/cm/config/common_full_phone.mk)
+$(call inherit-product, vendor/cm/config/common_mini_phone.mk)
 
 # Inherit device configuration
-$(call inherit-product, device/tct/cocktail/device_cocktail.mk)
+$(call inherit-product, device/alcatel/cocktail/cocktail.mk)
 
-# Spoof stock gingerbread fingerprint for now
-PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=one_touch_995_ALNL \
-                                BUILD_FINGERPRINT=TCT/one_touch_995_ALNL/one_touch_995_gsm:2.3.6/GINGERBREAD/v60J-0:user/release-keys \
-                                PRIVATE_BUILD_DESC="one_touch_995_ALNL-user 2.3.6 GINGERBREAD v60J-0 release-keys"
+# Include Qualcomm open source features
+$(call inherit-product, vendor/qcom/opensource/omx/mm-core/Android.mk)
+$(call inherit-product, vendor/qcom/opensource/omx/mm-video/Android.mk)
 
-PRODUCT_DEVICE := cocktail
+# Correct boot animation size for the screen.
+TARGET_BOOTANIMATION_NAME := vertical-480x800
+
+## Device identifier. This must come after all inclusions
+
 PRODUCT_NAME := cm_cocktail
-PRODUCT_MODEL := ALCATEL_one_touch_995
-PRODUCT_MANUFACTURER := TCT
+PRODUCT_DEVICE := cocktail
+PRODUCT_BRAND := Alcatel
+PRODUCT_MODEL := OT-995
+PRODUCT_MANUFACTURER := Alcatel
+PRODUCT_RELEASE_NAME := OT-995
 
+# Spoof stock fingerprint for now
+PRODUCT_BUILD_PROP_OVERRIDES += PRODUCT_NAME=one_touch_995_ALEU \
+                                BUILD_FINGERPRINT=TCT/one_touch_995_ALEU/one_touch_995_gsm:4.0.4/IceCreamSandwich/531:user/release-keys \
+                                PRIVATE_BUILD_DESC="one_touch_995_ALEU-user 4.0.4 IceCreamSandwich 531 release-keys"

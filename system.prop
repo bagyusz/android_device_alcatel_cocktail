@@ -1,0 +1,116 @@
+#
+# system.prop for OT-995
+#
+
+# USB
+sys.usb.config=adb
+persist.service.adb.enable=1
+persist.service.adb.root=1
+persist.sys.usb.config=mass_storage,adb
+
+# ril
+A51.supported.for.perso=true
+A52.supported.for.perso=false
+A53.supported.for.perso=true
+rild.libpath=/system/lib/libril-qc-qmi-1.so
+rild.libargs=-d /dev/smd0
+ro.telephony.ril_class=QualcommSharedRIL
+ro.bt.bdaddr_path=/system/etc/bluetooth/bdaddr.txt
+persist.rild.nitz_plmn=
+persist.rild.nitz_long_ons_0=
+persist.rild.nitz_long_ons_1=
+persist.rild.nitz_long_ons_2=
+persist.rild.nitz_long_ons_3=
+persist.rild.nitz_short_ons_0=
+persist.rild.nitz_short_ons_1=
+persist.rild.nitz_short_ons_2=
+persist.rild.nitz_short_ons_3=
+ril.subscription.types=NV,RUIM
+DEVICE_PROVISIONED=1
+ro.ril.disable.power.collapse=0
+qcom.bt.dev_power_class=2
+
+## system props for the MM modules
+media.stagefright.enable-player=true
+media.stagefright.enable-meta=false
+media.stagefright.enable-scan=true
+media.stagefright.enable-http=true
+media.stagefright.enable-fma2dp=true
+media.stagefright.enable-aac=true
+media.stagefright.enable-qcp=true
+lpa.use-stagefright=true
+
+# qcom display
+debug.sf.hw=1
+debug.composition.type=gpu
+persist.sys.composition.type=gpu
+persist.sys.ui.hw=true
+com.qc.hardware=true
+
+# Disable zram by default
+ro.zram.default=0
+
+# dualmic
+ro.audio.dualmic.enable=true
+
+# proximity
+ro.lge.proximity.delay=25
+mot.proximity.delay=25
+
+## HDMI&Decode
+ro.hdmi.enable=true
+
+## system props for the data modules
+ro.use_data_netmgrd=true
+
+## system props for telephony modules, device supports EHRPD
+ro.config.ehrpd=true
+
+## system prop for opengles version
+ro.opengles.version=131072
+
+## system prop for Bluetooth Dialup Networking
+ro.qualcomm.bluetooth.dun=true
+
+## system prop for Bluetooth Auto connect for remote initated connections
+ro.bluetooth.remote.autoconnect=true
+
+## System prop to disable strict mode flash on display
+persist.sys.strictmode.visual=false
+
+## system prop for multi rild (DSDS case)
+ro.multi.rild=false
+
+## system prop for Bluetooth FTP profile
+ro.qualcomm.bluetooth.ftp=true
+
+## system prop for requesting Master role in incoming Bluetooth connection.
+ro.bluetooth.request.master=true
+
+## system property to enforce Phone Mode view
+ro.screen.layout=normal
+
+## LCD
+ro.sf.lcd_density=240
+
+## System prop for disabling the meta data mode for encoder
+debug.camcorder.disablemeta=0
+
+## system props for SD card emulation of emmc partition
+ro.emmc.sdcard.partition=19
+
+## Simulate sdcard on /data/media
+persist.fuse_sdcard=false
+
+## Turn on tiled rendering
+debug.enabletr=false
+
+## System prop for using landscape preview layout in camera
+debug.camera.landscape=true
+
+## velocity
+ro.max.fling_velocity=4000
+
+## ADDITIONAL_BUILD_PROPERTIES
+wifi.interface=wlan0
+wifi.supplicant_scan_interval=60
