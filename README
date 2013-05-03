@@ -5,7 +5,7 @@ How to build:
 
 Initialize CyanogenMod repo:
 
-    repo init -u git://github.com/CyanogenMod/android.git -b jellybean
+    repo init -u git://github.com/CyanogenMod/android.git -b ics
     repo sync
 
 Compile:
